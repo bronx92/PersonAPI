@@ -31,10 +31,7 @@ public class PersonService {
         Person personToSave = personMapper.toModel(personDTO);
 
         Person savedPerson = personRepository.save(personToSave);
-        return MessageResponseDTO
-                .builder()
-                .message("Success!" + savedPerson.getId())
-                .build();
+        return getMessageResponseDTO(savedPerson);
     }
 
     public List<PersonDTO> listAll() {
@@ -54,6 +51,13 @@ public class PersonService {
         personRepository.deleteById(id);
     }
 
+    public MessageResponseDTO updateById(Long id, PersonDTO personDTO) throws PersonNotFoundException {
+        verifyIfExists(id);
+        Person personToSave = personMapper.toModel(personDTO);
+        Person updatedPerson = personRepository.save(personToSave);
+        return getMessageResponseDTO(updatedPerson);
+    }
+
     private Person verifyIfExists(Long id) throws PersonNotFoundException {
         /*
         Optional<Person> optionalPerson = personRepository.findById(id);
@@ -62,8 +66,13 @@ public class PersonService {
         }
         */
         return personRepository.findById(id)
-                .orElseThrow(
-                        () -> new PersonNotFoundException(id)
-                );
+                .orElseThrow( () -> new PersonNotFoundException(id));
+    }
+
+    private MessageResponseDTO getMessageResponseDTO(Person person) {
+        return MessageResponseDTO
+                .builder()
+                .message("Operation success at registry: " + person.getId())
+                .build();
     }
 }
