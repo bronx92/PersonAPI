@@ -1,10 +1,12 @@
 ## Sistema de gerenciamento de pessoas em API REST com Spring Boot
 
-### Pequeno sistema para o gerenciamento de pessoas de uma empresa através de uma API REST, criada com o Spring Boot.
+### Pequeno sistema para o gerenciamento de pessoas de uma empresa através de uma API REST, usando Spring Boot Framework.
 
 * Projeto realizado com o Spring Boot Initialzr
 * Operações (Cadastro, leitura, atualização e remoção de pessoas) seguindo padrão arquitetural Rest
-* Desenvolvimento de testes unitários para validação das funcionalidades
+* Persistência de dados com Spring Data JPA
+* MapStruct
+* Desenvolvimento de testes unitários com Spring Test
 * Implantação do sistema na nuvem através do Heroku
 
 Para executar o projeto no terminal, digite o seguinte comando:
