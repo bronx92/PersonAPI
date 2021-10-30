@@ -6,6 +6,7 @@ import com.bronx92.personapi.entity.Person;
 import com.bronx92.personapi.exception.PersonNotFoundException;
 import com.bronx92.personapi.mapper.PersonMapper;
 import com.bronx92.personapi.repository.PersonRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,16 +17,18 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired)) // Essa anotação substitui o construtor (que está comentado nesse código)
 public class PersonService {
 
     private PersonRepository personRepository;
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
-
+/*
     @Autowired
     public PersonService(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
+*/
 
     public MessageResponseDTO createPerson( PersonDTO personDTO){
         Person personToSave = personMapper.toModel(personDTO);
